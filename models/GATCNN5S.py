@@ -184,7 +184,7 @@ model = GATEmbedding(mid_nodes=7,
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
-input_img_shape = (32, 32, 32)  # (C, H, W) 示例
-input_struct_shape = (9,)       # 示例结构化特征
+input_img_shape = (32, 32, 32)  
+input_struct_shape = (9,)       
 
 summary(model, [input_img_shape, input_struct_shape])
