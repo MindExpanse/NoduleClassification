@@ -170,7 +170,6 @@ from torchsummary import summary
 # from config.data_config import config
 # cf = config()
 
-# 创建模型实例
 # model = GATEmbedding(mid_nodes, emb_size, nfeat, nhid, nclass, dropout, alpha, nheads)
 
 model = GATEmbedding(mid_nodes=7,
@@ -182,13 +181,10 @@ model = GATEmbedding(mid_nodes=7,
                       nheads=4,
                       alpha=0.2)
 
-# 将模型移动到适当的设备
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
-# 输入张量的形状
 input_img_shape = (32, 32, 32)  # (C, H, W) 示例
 input_struct_shape = (9,)       # 示例结构化特征
 
-# 调用 summary 打印模型参数量
 summary(model, [input_img_shape, input_struct_shape])
