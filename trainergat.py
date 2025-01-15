@@ -175,13 +175,12 @@ class Trainer(object):
         R.append(metric_val.get_pre_round())
 
         if partition == 'test':
-            # 创建一个worksheet
             worksheet = workbook.add_sheet("fold" + str(fold))
 
-            worksheet.write(0, 0, label="编号")
-            worksheet.write(0, 1, label="真实标签")
-            worksheet.write(0, 2, label="预测概率")
-            worksheet.write(0, 3, label="预测标签")
+            worksheet.write(0, 0, label="ID")
+            worksheet.write(0, 1, label="True Pro")
+            worksheet.write(0, 2, label="Predict Pro")
+            worksheet.write(0, 3, label="Label")
 
             for i in range(len(R[0])):
                 worksheet.write(i + 1, 0, label=R[0][i])
@@ -190,7 +189,6 @@ class Trainer(object):
                 for j in range(len(R[i])):
                     worksheet.write(j + 1, i, label=R[i][j])
 
-            # 保存
             workbook.save(os.path.join(save_test_result, 'prediction.xls'))
 
         if(partition=='val'):
