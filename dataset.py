@@ -57,7 +57,7 @@ class GATData(data.Dataset):  # 继承Dataset
 
 
 
-"""# LIDC 
+# LIDC
 class GATData(data.Dataset):  # 继承Dataset
     def __init__(self, log, partition='train', fold=1, split=1):
         self.cf = config()
@@ -159,10 +159,10 @@ class GATData(data.Dataset):  # 继承Dataset
 
         sample = {'img': img, 'struct_fea': img, 'label': label, 'id': id}  
 
-        return sample """
+        return sample
 
 
-# LIDP with Attribute
+"""# LIDP with Attribute
 class GATData(data.Dataset):  # 继承Dataset
     def __init__(self, log, partition='train', fold=1, split=1):
         self.cf = config()
@@ -314,4 +314,4 @@ class GATData(data.Dataset):  # 继承Dataset
 
         sample = {'img': img, 'struct_fea': struct_fea, 'label': label, 'id': id}
 
-        return sample
+        return sample"""

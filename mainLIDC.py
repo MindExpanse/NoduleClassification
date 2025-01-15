@@ -173,12 +173,12 @@ if __name__ == '__main__':
     parser.add_argument('--seed', type=int, default=222, help='random seed')
     parser.add_argument('--epoch', type=int, default=100, help='train epoch')
     parser.add_argument('--stop_num', type=int, default=50, help='train stop_num')
-    parser.add_argument('--mid_nodes', type=int, default=3)
+    parser.add_argument('--mid_nodes', type=int, default=7)
     parser.add_argument('--n_layer', type=int, default=1)
     parser.add_argument('--config', type=str, default=os.path.join('.', 'config', 'model_config.py'),
                         help='config file with parameters of the experiment. '
                              'It is assumed that the config file is placed under the directory ./config')
-    parser.add_argument('--path_root', type=str, default='/media/data1/Models_ly/classification/DSEGNN/3DCNN-new--1-SGD--1/Mid3/LIDC-GAT51-H4-slice_loss-emb64-hidden64-LastlayerLarge1-acc-lre-3/',
+    parser.add_argument('--path_root', type=str, default='/media/data1/Models_ly/classification/DSEGNN/Mid7/LIDC-GAT51-H4-slice_loss-emb64-hidden64-LastlayerLarge1-acc-lre-3/',
                         help='path that checkpoint and logs will be saved and loaded. '
                              'It is assumed that the checkpoint file is placed under the directory ./checkpoints')
     parser.add_argument('--display_step', type=int, default=1, help='display training information in how many step')

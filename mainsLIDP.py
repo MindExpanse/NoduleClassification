@@ -181,7 +181,7 @@ if __name__ == '__main__':
     parser.add_argument('--config', type=str, default=os.path.join('.', 'config', 'model_config.py'),
                         help='config file with parameters of the experiment. '
                              'It is assumed that the config file is placed under the directory ./config')
-    parser.add_argument('--path_root', type=str, default='/media/data1/Models_ly/classification/DSEGNN/3DCNN-new--1-SGD--1/Mid4/',
+    parser.add_argument('--path_root', type=str, default='/media/data1/classification/Mid4/',
                         help='path that checkpoint and logs will be saved and loaded. '
                              'It is assumed that the checkpoint file is placed under the directory ./checkpoints')
     parser.add_argument('--display_step', type=int, default=1, help='display training information in how many step')
