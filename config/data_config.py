@@ -5,7 +5,7 @@ class config:
     train_ratio = 1.0
     crop_size = 32
     slice_num = 32
-    metric = 'auc'  # 可选'auc'和'acc'
+    metric = 'auc' 
     threshold=0.5
     cross_validation_num = 5
     # struct_num = 7
