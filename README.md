@@ -9,9 +9,9 @@ tensorboardX == 2.6.2.2
 
 numpy == 1.26.3
 ## Installation
-pytorch: http://pytorch.org/
+pytorch: [http://pytorch.org/](http://pytorch.org/)
 
-tensorboardX: https://github.com/lanpa/tensorboard-pytorch
+tensorboardX: [https://github.com/lanpa/tensorboard-pytorch](https://github.com/lanpa/tensorboard-pytorch)
 
 Download and unzip this project: MIE-GAT-master.zip.
 ## Dataset
