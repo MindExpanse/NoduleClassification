@@ -8,6 +8,9 @@ import numpy as np
 from models.gatbackbone import SliceEmbeddingImagenet
 from models.layers import GraphAttentionLayer
 
+# from gatbackbone import SliceEmbeddingImagenet
+# from layers import GraphAttentionLayer
+
 # from layers1 import GraphAttentionLayer, UG_GraphAttentionLayer
 def normalize(mx):
     """Row-normalize sparse matrix"""
@@ -29,27 +32,27 @@ class GATEmbedding(nn.Module):
         self.slice_featuer = SliceEmbeddingImagenet(self.emb_size)
 
         # LIDP
-        self.struct_embedding = nn.ModuleList([torch.nn.Embedding(5, self.emb_size),
-                                               torch.nn.Embedding(2, self.emb_size),
-                                               torch.nn.Embedding(2, self.emb_size),
-                                               torch.nn.Embedding(2, self.emb_size),
-                                               torch.nn.Embedding(50, self.emb_size),
-                                               torch.nn.Embedding(3, self.emb_size),
-                                               torch.nn.Embedding(2, self.emb_size),
-                                               # torch.nn.Embedding(2, self.emb_size),
-                                               # torch.nn.Embedding(100, self.emb_size)
-                                               ])
-        # LIDC
-        # self.struct_embedding = nn.ModuleList([torch.nn.Embedding(4, self.emb_size),
-        #                                        torch.nn.Embedding(5, self.emb_size),
-        #                                        torch.nn.Embedding(5, self.emb_size),
-        #                                        torch.nn.Embedding(5, self.emb_size),
-        #                                        torch.nn.Embedding(5, self.emb_size),
-        #                                        torch.nn.Embedding(3, self.emb_size),
-        #                                        torch.nn.Embedding(4, self.emb_size),
-        #                                        torch.nn.Embedding(4, self.emb_size),
+        # self.struct_embedding = nn.ModuleList([torch.nn.Embedding(5, self.emb_size),
+        #                                        torch.nn.Embedding(2, self.emb_size),
+        #                                        torch.nn.Embedding(2, self.emb_size),
+        #                                        torch.nn.Embedding(2, self.emb_size),
         #                                        torch.nn.Embedding(50, self.emb_size),
+        #                                        torch.nn.Embedding(3, self.emb_size),
+        #                                        torch.nn.Embedding(2, self.emb_size),
+        #                                        # torch.nn.Embedding(2, self.emb_size),
+        #                                        # torch.nn.Embedding(100, self.emb_size)
         #                                        ])
+        # LIDC
+        self.struct_embedding = nn.ModuleList([torch.nn.Embedding(4, self.emb_size),
+                                               torch.nn.Embedding(5, self.emb_size),
+                                               torch.nn.Embedding(5, self.emb_size),
+                                               torch.nn.Embedding(5, self.emb_size),
+                                               torch.nn.Embedding(5, self.emb_size),
+                                               torch.nn.Embedding(3, self.emb_size),
+                                               torch.nn.Embedding(4, self.emb_size),
+                                               torch.nn.Embedding(4, self.emb_size),
+                                               torch.nn.Embedding(50, self.emb_size),
+                                               ])
 
         self.attentions = [GraphAttentionLayer(nfeat, nhid, dropout=dropout, alpha=alpha, concat=True) for _ in range(nheads)]
         for i, attention in enumerate(self.attentions):
@@ -160,3 +163,32 @@ class GATEmbedding(nn.Module):
         adjMetrix = torch.from_numpy(adjMetrix)
         adjMetrix = adjMetrix.float()
         return adjMetrix
+
+
+from torchsummary import summary
+#
+# from config.data_config import config
+# cf = config()
+
+# 创建模型实例
+# model = GATEmbedding(mid_nodes, emb_size, nfeat, nhid, nclass, dropout, alpha, nheads)
+
+model = GATEmbedding(mid_nodes=7,
+                      emb_size=64,
+                      nfeat=64,
+                      nhid=64,
+                      nclass=2,
+                      dropout=0.2,
+                      nheads=4,
+                      alpha=0.2)
+
+# 将模型移动到适当的设备
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)
+
+# 输入张量的形状
+input_img_shape = (32, 32, 32)  # (C, H, W) 示例
+input_struct_shape = (9,)       # 示例结构化特征
+
+# 调用 summary 打印模型参数量
+summary(model, [input_img_shape, input_struct_shape])
