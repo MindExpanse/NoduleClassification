@@ -15,7 +15,7 @@ import pandas as pd
 import inflect
 
 """# LIDC with attribute
-class GATData(data.Dataset):  # 继承Dataset
+class GATData(data.Dataset):  
     def __init__(self, X_test, y_test, char_test, log, partition='train', fold=1, split=1):
         self.cf = config()
         self.partition = partition
@@ -50,15 +50,15 @@ class GATData(data.Dataset):  # 继承Dataset
             img = self.transform(img)
             img = img.astype(float)
         id = actual_index
-        label = self.y[actual_index]  # 获取该图片的label
+        label = self.y[actual_index]  
         sample = {'img': img, 'struct_fea': struct_fea, 'label': label, 'id': id,
-                  "desc_feature": struct_fea}  # 根据图片和标签创建字典
+                  "desc_feature": struct_fea}  
         return sample  """
 
 
 
 # LIDC
-class GATData(data.Dataset):  # 继承Dataset
+class GATData(data.Dataset): 
     def __init__(self, log, partition='train', fold=1, split=1):
         self.cf = config()
         self.partition = partition
@@ -103,7 +103,6 @@ class GATData(data.Dataset):  # 继承Dataset
         datatra = []
         for i in range(1, self.cf.cross_validation_num + 1):
             if i == self.fold:
-                # 列表中的每一个元素都是一个三维向量的id，表示一个CT样本(3D图像)的id
                 dataval = split['fold' + str(i)]
                 # dataval = [i for i in val if 'aug' not in i]
             else:
@@ -137,12 +136,12 @@ class GATData(data.Dataset):  # 继承Dataset
         self.log.info("The number of images of class 1: {}".format(class_1))
         return class_names, images_path, ids
 
-    def __len__(self):  # 返回整个数据集的大小
+    def __len__(self):  
         return len(self.data)
 
     def __getitem__(self, index): 
-        image_path = self.data[index]  # 根据索引index获取该图片
-        img = np.load(image_path)  # 读取该图片
+        image_path = self.data[index]  
+        img = np.load(image_path)  
         
         crop_size = self.cf.crop_size
         bgx = int(img.shape[0] / 2 - crop_size / 2)
@@ -163,7 +162,7 @@ class GATData(data.Dataset):  # 继承Dataset
 
 
 """# LIDP with Attribute
-class GATData(data.Dataset):  # 继承Dataset
+class GATData(data.Dataset):  
     def __init__(self, log, partition='train', fold=1, split=1):
         self.cf = config()
         self.partition = partition
@@ -230,8 +229,8 @@ class GATData(data.Dataset):  # 继承Dataset
         class_1 = 1
         for file in files:
             path = os.path.join(self.cf.path_nodule, file + ".npy")
-            id_label = self.id_labels_features[self.id_labels_features["id"] == file]  # 获取该图片的label
-            class_ = int(id_label.iloc[0, 7])  # 获取良恶性标签
+            id_label = self.id_labels_features[self.id_labels_features["id"] == file]  
+            class_ = int(id_label.iloc[0, 7]) 
             if class_ == 0:
                 class_0 += 1
             else:
@@ -253,7 +252,6 @@ class GATData(data.Dataset):  # 继承Dataset
 
     def get_all_image_paths(self):
         print("------------------------get_image_paths-----------------------------------")
-        # 加载训练集和验证集数据
         with open(self.cf.path_split[self.split - 1], 'r') as f:
             split = json.load(f)
 
@@ -270,7 +268,7 @@ class GATData(data.Dataset):  # 继承Dataset
         for file in files:
             path = os.path.join(self.cf.path_nodule, file + ".npy")
             id_label = self.id_labels_features[self.id_labels_features["id"] == file]
-            class_ = int(id_label.iloc[0, 7])  # 获取良恶性标签
+            class_ = int(id_label.iloc[0, 7])  
             if class_ == 0:
                 class_0 += 1
             else:
@@ -289,12 +287,12 @@ class GATData(data.Dataset):  # 继承Dataset
 
         return class_names, images_path, struct_feas, ids
 
-    def __len__(self):  # 返回整个数据集的大小
+    def __len__(self):  
         return len(self.data)
 
-    def __getitem__(self, index):  # 根据索引index返回dataset[index]
-        image_path = self.data[index]  # 根据索引index获取该图片
-        img = np.load(image_path)  # 读取该图片
+    def __getitem__(self, index):  
+        image_path = self.data[index]  
+        img = np.load(image_path)  
 
         crop_size = self.cf.crop_size
         bgx = int(img.shape[0] / 2 - crop_size / 2)
