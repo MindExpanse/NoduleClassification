@@ -20,8 +20,8 @@ Original LIDC-IDRI dataset can be found in the official website: https://wiki.ca
 The LIDP dataset can be found in the MICCAI'2022 paper "Lidp: A lung image dataset with pathological information for
 lung cancer screening" in https://link.springer.com/chapter/10.1007/978-3-031-16437-8_74
 ## Todos
-* Scripts for the dataset configuration and model hyperparameter configuration are provided in [./config](https://github.com/ly706/MIE-GAT/tree/main/config).
-* Scripts for the model architecture are provided in [./models](https://github.com/ly706/MIE-GAT/tree/main/models).
+* Scripts for the dataset configuration and model hyperparameter configuration are provided in [./config](https://github.com/MindExpanse/NoduleClassification/tree/main/config).
+* Scripts for the model architecture are provided in [./models](https://github.com/MindExpanse/NoduleClassification/tree/main/models).
 * In the main running scripts, the parameter "mode" is "train" for training mode, "mode" is "eval" for test mode.
 * Modify the dataset configuration and the output directory in main running scripts.
 * Run main running scripts.
