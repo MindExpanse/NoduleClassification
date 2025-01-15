@@ -140,7 +140,7 @@ def main(args_opt):
                               test_acc=0)
 
         if args_opt.mode == 'eval' or args_opt.resume == True:
-            assert os.path.exists(os.path.join(args_opt.checkpoint_dir, 'model_best.pth.tar')), '指定模型文件未找到，请检查'
+            assert os.path.exists(os.path.join(args_opt.checkpoint_dir, 'model_best.pth.tar')), 'Not Found!'
             logger.info('find a checkpoint, loading checkpoint from {}'.format(args_opt.checkpoint_dir))
             best_checkpoint = torch.load(os.path.join(args_opt.checkpoint_dir, 'checkpoint.pth.tar'), map_location=torch.device('cpu'))
             logger.info('model pack loaded')
