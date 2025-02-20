@@ -1,5 +1,5 @@
 # MIE-GAT (Multi-perspective Information Enhancement Graph Attention Network)
-Code for the paper "MIE-GAT: A Multi-perspective Information Enhancement Graph Attention Network for Benign and Malignant Classification of Pulmonary Nodules".
+Code for the paper "MIE-GAT: Multi-perspective Information Enhancement for Slice-based Image Retrieval in Multi-modal Medical Diagnosis".
 ## Requirement
 Python 3.9.18
 
